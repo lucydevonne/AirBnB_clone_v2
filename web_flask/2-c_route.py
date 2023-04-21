@@ -9,7 +9,7 @@ Routes:
 You must use the option strict_slashes=False in your route definition
 """
 
-import flask from Flask
+import Flask from flask
 
 app = Flask(__name__)
 
