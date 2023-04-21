@@ -10,13 +10,20 @@ After each request you must remove the current SQLAlchemy Session:
 Declare a method to handle @app.teardown_appcontext
 Call in this method storage.close()
 Routes:
-/cities_by_states: display a HTML page: (inside the tag BODY)
-H1 tag: �~@~\States�~@~]
+/states: display a HTML page: (inside the tag BODY)
+H1 tag: “States”
 UL tag: with the list of all State objects present in DBStorage sorted by name (A->Z) tip
-LI tag: description of one State: <state.id>: <B><state.name></B> + UL tag: with the list of City objects linked to the State sorted by name (A->Z)
+LI tag: description of one State: <state.id>: <B><state.name></B>
+/states/<id>: display a HTML page: (inside the tag BODY)
+If a State object is found with this id:
+H1 tag: “State: ”
+H3 tag: “Cities:”
+UL tag: with the list of City objects linked to the State sorted by name (A->Z)
 LI tag: description of one City: <city.id>: <B><city.name></B>
-Import this 7-dump to have some data
+Otherwise:
+H1 tag: “Not found!”
 You must use the option strict_slashes=False in your route definition
+Import this 7-dump to have some data
 """
 from models import storage
 from flask import Flask
@@ -25,10 +32,18 @@ from flask import render_template
 app = Flask(__name__)
 
 
-@app.route("/cities_by_states", strict_slashes=False)
-def cities_by_states():
+@app.route("/states", strict_slashes=False)
+def states():
     states = storage.all("State")
-    return render_template("8-cities_by_states.html", states=states)
+    return render_template("9-states.html", state=states)
+
+
+@app.route("/states/<id>", strict_slashes=False)
+def states_id(id):
+    for state in storage.all("State").values():
+        if state.id == id:
+            return render_template("9-states.html", state=state)
+    return render_template("9-states.html")
 
 
 @app.teardown_appcontext
