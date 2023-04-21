@@ -9,7 +9,7 @@ You must use the option strict_slashes=False in your route definition
 
 import Flask from flask
 
-app = Flask("__name__")
+app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def hello_world():
