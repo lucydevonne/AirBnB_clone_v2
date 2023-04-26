@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Module that contains the State class which is a subclass of BaseModel
-"""
+""" holds class State"""
 import models
 from models.base_model import BaseModel, Base
 from os import getenv
@@ -11,10 +9,7 @@ from sqlalchemy.orm import relationship
 
 
 class State(BaseModel, Base):
-    """
-    A class for State objects.
-    Inherits from BaseModel and Base.
-    """
+    """Representation of state """
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = 'states'
         name = Column(String(128),
@@ -31,14 +26,10 @@ class State(BaseModel, Base):
     if getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
         def cities(self):
-            """
-            Getter attribute that returns a list of City instances
-            where state_id matches the current State.id.
-            """
+            """fs getter attribute that returns City instances"""
             values_city = models.storage.all("City").values()
             list_city = []
             for city in values_city:
                 if city.state_id == self.id:
                     list_city.append(city)
             return list_city
-
