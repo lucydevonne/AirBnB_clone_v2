@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""A script that starts a flask web application
-Your web application must be listening on 0.0.0.0, port 5000
+"""Script that starts a flask web application
 """
 
 from flask import Flask
@@ -16,3 +15,4 @@ def hello():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=None)
+
