@@ -1,15 +1,6 @@
 #!/usr/bin/python3
-"""A script that starts a Flask web application.
-
-The web application must be listening on 0.0.0.0, port 5000.
-
-Routes:
-    /: Display "Hello HBNB!"
-    /hbnb: Display "HBNB"
-    /c/<text>: Display "C " followed by the value of the text variable 
-             (replace underscore _ symbols with a space)
-
-You must use the option strict_slashes=False in your route definition.
+""" Write a script that starts a Flask web application:
+Your web application must be listening on 0.0.0.0, port 5000
 """
 
 from flask import Flask
@@ -19,13 +10,13 @@ app = Flask("__name__")
 
 @app.route('/', strict_slashes=False)
 def hello():
-    """Return Hello HBNB!"""
+    """Return a given string"""
     return ("Hello HBNB!")
 
 
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """Return HBNB"""
+    """Returns a given string"""
     return ("HBNB")
 
 
@@ -36,4 +27,4 @@ def cText(text):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, )
+    app.run(host="0.0.0.0", port=5000, debug=None)
