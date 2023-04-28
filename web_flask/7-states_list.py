@@ -1,8 +1,10 @@
 #!/usr/bin/python3
-""" a script that starts a Flask web application:
+"""
+a script that starts a Flask web application:
 
 Your web application must be listening on 0.0.0.0, port 5000
-You must use storage for fetching data from the storage engine (FileStorage or DBStorage) => from models import storage and storage.all(...)
+You must use storage for fetching data from the storage engine
+(FileStorage or DBStorage) => from models import storage and storage.all(...)
 After each request you must remove the current SQLAlchemy Session:
 Declare a method to handle @app.teardown_appcontext
 Call in this method storage.close()
@@ -13,7 +15,7 @@ UL tag: with the list of all State objects present in DBStorage sorted by name (
 LI tag: description of one State: <state.id>: <B><state.name></B>
 Import this 7-dump to have some data
 You must use the option strict_slashes=False in your route definition
-    
+
 """
 from models import storage
 from flask import Flask
