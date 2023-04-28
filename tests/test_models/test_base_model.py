@@ -1,14 +1,15 @@
 #!/usr/bin/python3
 """ """
-from models.base_model import BaseModel
 import unittest
 import datetime
-from uuid import UUID
 import json
 import os
+from uuid import UUID
+
+from models.base_model import BaseModel
 
 
-class test_basemodel(unittest.TestCase):
+class TestBaseModel(unittest.TestCase):
     """ """
 
     def __init__(self, *args, **kwargs):
@@ -22,9 +23,10 @@ class test_basemodel(unittest.TestCase):
         pass
 
     def tearDown(self):
+        """ """
         try:
             os.remove('file.json')
-        except:
+        except Exception:
             pass
 
     def test_default(self):
@@ -59,8 +61,8 @@ class test_basemodel(unittest.TestCase):
     def test_str(self):
         """ """
         i = self.value()
-        self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
-                         i.__dict__))
+        self.assertEqual(str(i), '[{}] ({}) {}'.format(
+            self.name, i.id, i.__dict__))
 
     def test_todict(self):
         """ """
@@ -97,3 +99,7 @@ class test_basemodel(unittest.TestCase):
         n = new.to_dict()
         new = BaseModel(**n)
         self.assertFalse(new.created_at == new.updated_at)
+
+
+if __name__ == '__main__':
+    unittest.main()
