@@ -1,0 +1,9 @@
+set nowrapscan
+set tabsize 4
+set softwrap
+set mouse
+set autoindent
+set backup
+set backupdir "/tmp"
+set historylog
+regex EXTRANEOUS_WHITESPACE_REGEX [[({]|\s|[]}),;:]
